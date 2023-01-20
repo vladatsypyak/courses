@@ -1,6 +1,7 @@
 import "../../../Courses/Courses.css"
 import Button from "../../../../common/Button/Button";
 function CourseCard(props) {
+    console.log(props.courseDuration)
 return (
 <div className={"course_card"}>
     <div className="card_flex_wrap">

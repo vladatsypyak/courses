@@ -3,6 +3,7 @@ import {mockedAuthorsList, mockedCoursesList} from "../../constants";
 import CourseCard from "./components/CourseCard/CourseCard";
 import {useState} from "react";
 import {service} from "../../service";
+import pipeDate from "../../helpers/pipeDate";
 
 function Courses() {
     const [inputValue, setInputValue] = useState("")
@@ -37,7 +38,7 @@ function Courses() {
                         courseTitle={el.title}
                         courseDescription={el.description}
                         courseDuration={el.duration}
-                        courseCreationDate={el.creationDate}
+                        courseCreationDate={pipeDate(el.creationDate)}
 
                     />
                 })
