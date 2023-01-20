@@ -6,9 +6,10 @@ import {service} from "../../service";
 
 function Courses() {
     const [inputValue, setInputValue] = useState("")
-    const [coursesOnScreen, setCoursesOnScreen] = useState(mockedCoursesList)
+    const [coursesOnScreen, setCoursesOnScreen] = useState(service.data.courses)
 
     function onSearchClick() {
+
         console.log(inputValue)
         if (!inputValue) {
             setCoursesOnScreen(mockedCoursesList)
@@ -20,6 +21,7 @@ function Courses() {
     }
 
     function handleInputChange(e) {
+        console.log(1)
         setInputValue(e.target.value)
     }
     function onAddNewCourseClick() {
