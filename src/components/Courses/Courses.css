@@ -1,0 +1,33 @@
+.course_card{
+    width: 90%;
+    margin: 0 auto;
+}
+.card_flex_wrap{
+    display: flex;
+    gap: 15px;
+}
+.card_main{
+    flex-basis: 65%;
+}
+.card_info_section{
+
+}
+.course_card{
+    box-shadow: 3px 3px 10px #beafd2;
+    padding: 20px;
+    border-radius: 10px;
+}
+.card_info_title{
+    font-weight: bold;
+}
+.searchbar_wrap{
+    display: flex;
+    justify-content: space-between;
+}
+.search_wrap{
+    display: flex;
+    gap:30px;
+    width: 60%;
+    justify-content: space-between;
+}
+

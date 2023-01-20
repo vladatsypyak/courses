@@ -1,25 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import Header from "./components/Header/Header";
+import {userName} from "./constants";
+import Button from "./common/Button/Button";
+import "./App.css"
+import CourseCard from "./components/Courses/components/CourseCard/CourseCard";
+import Courses from "./components/Courses/Courses";
+import {Route, Routes} from "react-router-dom"
+import CreateCourse from "./components/CreateCourse/CreateCourse";
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (<div className={"container"}>
+        <Header/>
+        <Routes>
+            <Route path="/" element={<Courses/>}/>
+            <Route path="/createCourse" element={<CreateCourse/>}/>
+
+        </Routes>
+    </div>);
 }
 
 export default App;
