@@ -76,20 +76,20 @@ function CreateCourse() {
         <form onSubmit={handleSubmit(onSubmit)} className={"create_course_wrap"}>
 
             <div className="create_course_flex_wrap">
-                <Input labelText={"Title"} classname={"create_course_input"} register={register}
+                <Input  placeholderText={"course title"}  labelText={"Title"} classname={"create_course_input"} register={register}
                        onChange={onTitleChange} required/>
                 <button type={"submit"}>Create course</button>
             </div>
-            <p className={"create_course_text"}>Description</p>
-            <textarea className={"create_course_description"} onChange={onDescriptionChange}/>
+            <p  className={"create_course_text"}>Description</p>
+            <textarea {...register("description", {required: true})}  className={"create_course_description"} onChange={onDescriptionChange}/>
             <div className="create_course_authors_section">
                 <div className="create_course_add_author create_course_authors_section_item">
                     <h2 className={"create_course_title"}>Add author</h2>
-                    <div className="test">
-                        <Input register={register}  labelText={"Author name"}
+
+                        <Input placeholderText={"author name"} register={register}  labelText={"Author name"}
                                classname={"create_course_section_input"} onChange={onAuthorNameChange}/>
 
-                    </div>
+
                     <Button onClick={onCreateAuthorClick} buttonText={"Create author"}/>
                 </div>
                 <div className="create_course_authors create_course_authors_section_item">
@@ -109,7 +109,7 @@ function CreateCourse() {
                 </div>
                 <div className="create_course_duration create_course_authors_section_item">
                     <h2 className={"create_course_title"}>Duration</h2>
-                    <Input inputType={"number"} labelText={"Duration"} register={register} required
+                    <Input placeholderText={"duration in minutes"} inputType={"number"} labelText={"Duration"} register={register} required
                            classname={"create_course_section_input"} onChange={onDurationChange}/>
 
                     <p className="create_course_duration_value">
