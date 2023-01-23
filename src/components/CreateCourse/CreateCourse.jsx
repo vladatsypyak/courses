@@ -59,9 +59,9 @@ function CreateCourse() {
             description,
             creationDate: String(new Date()),
             duration,
-            authors: courseAuthors
+            authors: courseAuthors.map(el=>el.id)
         })
-        console.log(service.data.courses)
+        console.log(service.data)
     }
 
     const onSubmit = (data) => {

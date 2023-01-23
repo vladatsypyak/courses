@@ -33,5 +33,6 @@ export const service = {
     },
     createCourse(course){
         this.data.courses = [... this.data.courses, course]
+
     }
 }
