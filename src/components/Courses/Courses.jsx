@@ -39,7 +39,9 @@ function Courses() {
                         courseDescription={el.description}
                         courseDuration={el.duration}
                         courseCreationDate={pipeDate(el.creationDate)}
-
+                        courseAuthors={el.authors.map((elAuthor)=>{
+                            return service.data.authors.filter((author)=> author.id === elAuthor )[0]
+                        })}
                     />
                 })
             }

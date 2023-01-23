@@ -1,7 +1,7 @@
 import "../../../Courses/Courses.css"
 import Button from "../../../../common/Button/Button";
 function CourseCard(props) {
-    console.log(props.courseDuration)
+    console.log(props.courseAuthors)
 return (
 <div className={"course_card"}>
     <div className="card_flex_wrap">
@@ -15,7 +15,9 @@ return (
         </div>
         <div className="flex_item card_info_section">
             <div className="card_info">
-                <p><span className="card_info_title">Authors</span>{props.courseAuthors}</p>
+                <div><span className="card_info_title">Authors</span>{props.courseAuthors.map(el=>{
+                    return <p>{el?.name}</p>
+                })}</div>
                 <p><span className="card_info_title">Duration</span>{props.courseDuration}</p>
                 <p><span className="card_info_title">Created</span>{props.courseCreationDate}</p>
             </div>
