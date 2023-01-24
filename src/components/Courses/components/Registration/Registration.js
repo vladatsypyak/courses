@@ -2,6 +2,9 @@ import Input from "../../../../common/Input/Input";
 import Button from "../../../../common/Button/Button";
 import {useForm} from "react-hook-form";
 import {useState} from "react";
+import {Link} from "react-router-dom";
+
+import "./Registration.css"
 
 export default function Registration(){
     const[name, setName]= useState("")
@@ -31,7 +34,8 @@ export default function Registration(){
                         onChange={onEmailChange} required/>
                 <Input  placeholderText={"password"} inputType={"password"}  labelText={"Password"} classname={"registration_input"} register={register}
                         onChange={onPasswordChange} required/>
-                <button type={"submit"}>Registration</button>
+                <button className={"submit_btn"} type={"submit"}>Registration</button>
+                <p>If you have an account you can <Link to={"/login"}>Login</Link></p>
             </div>
         </form>
     )
