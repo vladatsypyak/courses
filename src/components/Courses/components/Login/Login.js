@@ -5,6 +5,7 @@ import {useState} from "react";
 import {Link} from "react-router-dom";
 
 import "./Login.css"
+import axios from "axios";
 
 export default function Login(){
 
@@ -25,25 +26,23 @@ export default function Login(){
             password,
             email,
         };
-        fetch('http://localhost:4000/login', {
-            method: 'POST',
-            body: JSON.stringify(user),
+        axios({
+            method: 'post',
+            url: 'http://localhost:4000/login',
+            data: JSON.stringify(user),
             headers: {'Content-Type': 'application/json'},
+
         })
             .then((response) => {
-                if (response.ok) {
-                    return response.json();
-                }
-                throw new Error('Something went wrong')
+                console.log(response)
+                   return response.data
             })
-
             .then((data) => {
                 console.log( data.result.split(" ")[1]);
                 return data.result.split(" ")[1]
             })
             .then((data) => sessionStorage.setItem('jwt_token', data))
             .catch((error) => {
-                console.log(1)
                 console.error('Error:', error);
                 alert("password or login is incorrect")
             });

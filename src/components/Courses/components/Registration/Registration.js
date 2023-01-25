@@ -5,24 +5,76 @@ import {useState} from "react";
 import {Link} from "react-router-dom";
 
 import "./Registration.css"
+import axios from "axios";
 
 export default function Registration(){
     const[name, setName]= useState("")
+    const[password, setPassword]= useState("")
+    const[email, setEmail]= useState("")
+
     function onNameChange(e) {
-        console.log(e.target.value)
         setName(e.target.value)
     }
     function onEmailChange(e) {
-        console.log(e.target.value)
-        setName(e.target.value)
+        setEmail(e.target.value)
     }
     function onPasswordChange(e) {
-        console.log(e.target.value)
-        setName(e.target.value)
+        setPassword(e.target.value)
     }
-    const onSubmit = (data) => {
+    const onSubmit = async (data) => {
+        const newUser = {
+            name,
+            password,
+            email,
+        };
+        // fetch('http://localhost:4000/register', {
+        //     method: 'POST',
+        //     body: JSON.stringify(newUser),
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //     },
+        // })
+        //     .then((response)=> {
+        //         console.log(response)
+        //         if (response.ok) {
+        //             return response.json()
+        //         }
+        //          throw new Error("email is not valid or it has already been taken")
+        //     })
+        //     .catch(error => {
+        //         console.log(error)
+        //         alert("email is not valid or it has already been taken")
+        //     })
 
-        console.log(data);
+
+        axios({
+            method: 'post',
+            url: 'http://localhost:4000/register',
+            data: JSON.stringify(newUser),
+            headers: {'Content-Type': 'application/json'},
+
+        })
+            .then((response) => {
+                console.log(response.data)
+                return response.data
+            })
+            .then((data) => {
+                console.log( data.result.split(" ")[1]);
+                return data.result.split(" ")[1]
+            })
+            .then((data) => sessionStorage.setItem('jwt_token', data))
+            .catch((error) => {
+                console.log(error.response.data.errors)
+                console.error('Error:', error);
+                alert(error.response.data.errors.toString())
+
+            });
+
+
+
+
+
+
     }
     const {register, control, handleSubmit, watch, formState: {errors}} = useForm();
     return (
