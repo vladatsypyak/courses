@@ -14,7 +14,7 @@ specimen book. It has survived
  nchanged.`,
         creationDate: '8/3/2021',
         duration: 160,
-        authors: ['27cc3006-e93a-4748-8ca8-73d06aa93b6d', 'f762978b-61eb-4096-812bebde22838167'],
+        authors: ['27cc3006-e93a-4748-8ca8-73d06aa93b6d', 'f762978b-61eb-4096-812b-ebde22838167'],
     },
     {
         id: 'b5630fdd-7bf7-4d39-b75a-2b5906fd0916',

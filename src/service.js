@@ -31,8 +31,15 @@ export const service = {
             }]
         }
     },
-    createCourse(course){
-        this.data.courses = [... this.data.courses, course]
+    createCourse(course) {
+        this.data.courses = [...this.data.courses, course]
+
+    },
+    getCourseAuthors(courseAuthors) {
+       return courseAuthors.map((elAuthor) => {
+           console.log(elAuthor)
+            return service.data.authors.filter((author) => author.id === elAuthor)[0]
+        }).filter(el => el)
 
     }
 }

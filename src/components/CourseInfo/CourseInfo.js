@@ -6,7 +6,7 @@ import pipeDate from "../../helpers/pipeDate";
 export default function CourseInfo(props){
     let { id } = useParams();
     const course = service.data.courses.filter((el)=>el.id === id)[0]
-
+    console.log(service.getCourseAuthors(course.authors));
     return(
         <div>
             <Link to={"/courses"}>Back to courses</Link>
