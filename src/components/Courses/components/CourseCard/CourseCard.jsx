@@ -1,9 +1,11 @@
 import "../../../Courses/Courses.css"
 import Button from "../../../../common/Button/Button";
 function CourseCard(props) {
-    console.log(props.courseAuthors)
+function onClick(){
+    props.onClick(props.id)
+}
 return (
-<div className={"course_card"}>
+<div onClick={onClick} className={"course_card"}>
     <div className="card_flex_wrap">
         <div className="flex_item card_main">
             <h2 className="card_title">

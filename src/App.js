@@ -6,8 +6,9 @@ import CourseCard from "./components/Courses/components/CourseCard/CourseCard";
 import Courses from "./components/Courses/Courses";
 import {Route, Routes} from "react-router-dom"
 import CreateCourse from "./components/CreateCourse/CreateCourse";
-import Registration from "./components/Courses/components/Registration/Registration";
-import Login from "./components/Courses/components/Login/Login";
+import Registration from "./components/Registration/Registration";
+import Login from "./components/Login/Login";
+import CourseInfo from "./components/CourseInfo/CourseInfo";
 
 
 function App() {
@@ -15,7 +16,8 @@ function App() {
         <Header/>
         <Routes>
             <Route path="/courses" element={<Courses/>}/>
-            <Route path="/createCourse" element={<CreateCourse/>}/>
+            <Route path="/courses/createCourse" element={<CreateCourse/>}/>
+            <Route path="/courses/:id" element={<CourseInfo/>}/>
             <Route path="/registration" element={<Registration/>}/>
             <Route path="/login" element={<Login/>}/>
 

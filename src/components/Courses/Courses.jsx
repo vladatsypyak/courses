@@ -4,11 +4,13 @@ import CourseCard from "./components/CourseCard/CourseCard";
 import {useState} from "react";
 import {service} from "../../service";
 import pipeDate from "../../helpers/pipeDate";
+import axios from "axios";
+import {useNavigate} from "react-router-dom";
 
 function Courses() {
     const [inputValue, setInputValue] = useState("")
     const [coursesOnScreen, setCoursesOnScreen] = useState(service.data.courses)
-
+    const navigate = useNavigate()
     function onSearchClick() {
 
         console.log(inputValue)
@@ -28,6 +30,25 @@ function Courses() {
     function onAddNewCourseClick() {
         console.log(8)
     }
+    function onCardClick(id){
+        console.log(id)
+        navigate(`/courses/${id}`)
+        // axios({
+        //     method: 'get',
+        //     url: `http://localhost:4000/courses/${id}`,
+        //     headers: {'Content-Type': 'application/json'},
+        //
+        // })
+        //     .then((response) => {
+        //         console.log(response)
+        //         return response.data
+        //     })
+        //     // .then((data) => sessionStorage.setItem('jwt_token', data))
+        //     // .then(()=> navigate("/courses"))
+        //     .catch((error) => {
+        //         console.error('Error:', error);
+        //     });
+    }
 
     return (
         <div>
@@ -35,6 +56,8 @@ function Courses() {
             {
                 coursesOnScreen.map((el) => {
                     return <CourseCard
+                        onClick={onCardClick}
+                        id={el.id}
                         courseTitle={el.title}
                         courseDescription={el.description}
                         courseDuration={el.duration}
