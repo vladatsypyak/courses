@@ -3,6 +3,7 @@ import Button from "../../../../common/Button/Button";
 import {useForm} from "react-hook-form";
 import {useState} from "react";
 import {Link} from "react-router-dom";
+import { useNavigate } from 'react-router-dom'; // version 5.2.0
 
 import "./Login.css"
 import axios from "axios";
@@ -11,6 +12,7 @@ export default function Login(){
 
     const[password, setPassword]= useState("")
     const[email, setEmail]= useState("")
+    const navigate = useNavigate()
 
 
     function onEmailChange(e) {
@@ -42,10 +44,12 @@ export default function Login(){
                 return data.result.split(" ")[1]
             })
             .then((data) => sessionStorage.setItem('jwt_token', data))
+            .then(()=> navigate("/courses"))
             .catch((error) => {
                 console.error('Error:', error);
                 alert("password or login is incorrect")
             });
+
 
     }
     const {register, control, handleSubmit, watch, formState: {errors}} = useForm();

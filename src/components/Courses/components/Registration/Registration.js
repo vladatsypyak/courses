@@ -2,7 +2,7 @@ import Input from "../../../../common/Input/Input";
 import Button from "../../../../common/Button/Button";
 import {useForm} from "react-hook-form";
 import {useState} from "react";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 import "./Registration.css"
 import axios from "axios";
@@ -11,6 +11,7 @@ export default function Registration(){
     const[name, setName]= useState("")
     const[password, setPassword]= useState("")
     const[email, setEmail]= useState("")
+    const navigate = useNavigate()
 
     function onNameChange(e) {
         setName(e.target.value)
@@ -27,26 +28,6 @@ export default function Registration(){
             password,
             email,
         };
-        // fetch('http://localhost:4000/register', {
-        //     method: 'POST',
-        //     body: JSON.stringify(newUser),
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //     },
-        // })
-        //     .then((response)=> {
-        //         console.log(response)
-        //         if (response.ok) {
-        //             return response.json()
-        //         }
-        //          throw new Error("email is not valid or it has already been taken")
-        //     })
-        //     .catch(error => {
-        //         console.log(error)
-        //         alert("email is not valid or it has already been taken")
-        //     })
-
-
         axios({
             method: 'post',
             url: 'http://localhost:4000/register',
@@ -63,17 +44,13 @@ export default function Registration(){
                 return data.result.split(" ")[1]
             })
             .then((data) => sessionStorage.setItem('jwt_token', data))
+            .then(()=> navigate("/login"))
             .catch((error) => {
                 console.log(error.response.data.errors)
                 console.error('Error:', error);
                 alert(error.response.data.errors.toString())
 
             });
-
-
-
-
-
 
     }
     const {register, control, handleSubmit, watch, formState: {errors}} = useForm();
