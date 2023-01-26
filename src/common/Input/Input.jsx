@@ -11,7 +11,7 @@ function Input({onChange, classname, labelText, register, required, placeholderT
             <p className={"label"}>{labelText}</p>
             {
                 register ?
-                    <input className={"input"} placeholder={placeholderText}
+                    <input className={`${classname}_input input`} placeholder={placeholderText}
                            type={inputType}
                            {...register(labelText, {required,})}
                            onChange={onChange}
