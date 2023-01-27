@@ -1,5 +1,5 @@
-import Input from "../../../../common/Input/Input";
-import Button from "../../../../common/Button/Button";
+import Input from "../../common/Input/Input";
+import Button from "../../common/Button/Button";
 import {useForm} from "react-hook-form";
 import {useState} from "react";
 import {Link} from "react-router-dom";
@@ -40,7 +40,6 @@ export default function Login(){
                    return response.data
             })
             .then((data) => {
-                console.log( data.result.split(" ")[1]);
                 return data.result.split(" ")[1]
             })
             .then((data) => sessionStorage.setItem('jwt_token', data))

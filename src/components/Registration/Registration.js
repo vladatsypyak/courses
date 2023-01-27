@@ -1,5 +1,5 @@
-import Input from "../../../../common/Input/Input";
-import Button from "../../../../common/Button/Button";
+import Input from "../../common/Input/Input";
+import Button from "../../common/Button/Button";
 import {useForm} from "react-hook-form";
 import {useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
