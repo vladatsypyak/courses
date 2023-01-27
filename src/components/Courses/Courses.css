@@ -16,6 +16,7 @@
     box-shadow: 3px 3px 10px #beafd2;
     padding: 20px;
     border-radius: 10px;
+    margin-bottom: 30px;
 }
 .card_info_title{
     font-weight: bold;
@@ -23,11 +24,21 @@
 .searchbar_wrap{
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
 }
 .search_wrap{
     display: flex;
     gap:30px;
     width: 60%;
     justify-content: space-between;
+    align-items: center;
 }
-
+.search_input input{
+    padding: 0;
+    margin: 0;
+    height: 50px
+}
+.search_input .label{
+    display: none;
+}

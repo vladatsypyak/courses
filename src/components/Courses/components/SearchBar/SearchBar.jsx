@@ -7,7 +7,7 @@ function Searchbar(props) {
     return (
         <div className={"searchbar_wrap"}>
             <div className="search_wrap">
-                <Input onChange={props.handleInputChange}/>
+                <Input classname={"search_input"} onChange={props.handleInputChange}/>
                 <Button onClick={props.onSearchClick} buttonText={"Search"}/>
             </div>
             <Link to={"createCourse"}>
