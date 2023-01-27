@@ -15,7 +15,7 @@ function Courses() {
 
         console.log(inputValue)
         if (!inputValue) {
-            setCoursesOnScreen(mockedCoursesList)
+            setCoursesOnScreen(service.data.courses)
             return
         }
         setCoursesOnScreen(service.searchByTitleOrId(inputValue))
