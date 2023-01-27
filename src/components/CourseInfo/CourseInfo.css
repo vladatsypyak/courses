@@ -1,0 +1,14 @@
+.course_info_title{
+    text-align: center;
+
+}
+.course_info_flex_wrap{
+    display: flex;
+    justify-content: space-between;
+}
+.course_info_description{
+    width: 60% ;
+}
+.course_info_details_title span{
+    font-weight: bold;
+}
