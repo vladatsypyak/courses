@@ -1,6 +1,7 @@
 import "../../../Courses/Courses.css"
 import Button from "../../../../common/Button/Button";
 function CourseCard(props) {
+
 function onClick(){
     props.onClick(props.id)
 }

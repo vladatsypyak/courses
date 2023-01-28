@@ -1,0 +1,2 @@
+export const CREATE_AUTHOR = "CREATE_AUTHOR"
+export const SEARCH_COURSES = "SEARCH_COURSES"

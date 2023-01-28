@@ -2,24 +2,29 @@ import Searchbar from "./components/SearchBar/SearchBar";
 import {mockedAuthorsList, mockedCoursesList} from "../../constants";
 import CourseCard from "./components/CourseCard/CourseCard";
 import {useState} from "react";
-import {service} from "../../service";
+import {searchByTitleOrId, service} from "../../service";
 import pipeDate from "../../helpers/pipeDate";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
+import { useSelector } from 'react-redux'
+import store from "../../store";
 
 function Courses() {
     const [inputValue, setInputValue] = useState("")
-    const [coursesOnScreen, setCoursesOnScreen] = useState(service.data.courses)
+    const [coursesOnScreen, setCoursesOnScreen] = useState(store.getState().courses)
     const navigate = useNavigate()
-    function onSearchClick() {
+    // const courses = useSelector( store => store.courses)
+
+    function onSearchClick(e) {
 
         console.log(inputValue)
         if (!inputValue) {
-            setCoursesOnScreen(service.data.courses)
+          setCoursesOnScreen(store.getState().courses)
+
             return
         }
-        setCoursesOnScreen(service.searchByTitleOrId(inputValue))
-        console.log(coursesOnScreen)
+        setCoursesOnScreen( searchByTitleOrId(inputValue))
+        console.log(searchByTitleOrId(inputValue))
 
     }
 
@@ -63,7 +68,8 @@ function Courses() {
                         courseDuration={el.duration}
                         courseCreationDate={pipeDate(el.creationDate)}
                         courseAuthors={el.authors.map((elAuthor)=>{
-                            return service.data.authors.filter((author)=> author.id === elAuthor )[0]
+                            console.log(el)
+                            return store.getState().authors.filter((author)=> author.id === elAuthor )[0]
                         })}
                     />
                 })

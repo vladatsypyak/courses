@@ -3,11 +3,12 @@ import {service} from "../../service";
 import pipeDuration from "../../helpers/pipeDuration";
 import pipeDate from "../../helpers/pipeDate";
 import "./CourseInfo.css"
+import store from "../../store";
 
 export default function CourseInfo(props){
     let { id } = useParams();
-    const course = service.data.courses.filter((el)=>el.id === id)[0]
-    console.log(service.getCourseAuthors(course.authors));
+    const course = store.getState().courses.filter((el)=>el.id === id)[0]
+
     return(
         <div className={"container"}>
             <Link to={"/courses"}>Back to courses</Link>
