@@ -1,5 +1,5 @@
 import {useState} from "react";
-import {service} from "../../service";
+import {service} from "../../redux/service";
 import Input from "../../common/Input/Input";
 import Button from "../../common/Button/Button";
 import "./CreateCourse.css"

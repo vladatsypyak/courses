@@ -1,7 +1,10 @@
-import {combineReducers, createStore} from 'redux'
+import {combineReducers, createStore, applyMiddleware} from 'redux';
+import createSagaMiddleware from 'redux-saga'
 import coursesReducer from "./courses/reducer";
 import {mockedCoursesList} from "../constants";
 import authorsReducer from "./authors/reducer";
+import mySaga from "../redux/saga/sagas"
+
 
 export const initialState = {
     user: {
@@ -15,12 +18,19 @@ export const initialState = {
     authors: [] ,
 
 }
+const sagaMiddleware = createSagaMiddleware()
+
 const rootReducer = combineReducers({
     courses: coursesReducer,
     authors: authorsReducer
 })
 // This would produce the following state object
 
-const store = createStore(rootReducer)
+const store = createStore(rootReducer,  applyMiddleware(sagaMiddleware))
+
+sagaMiddleware.run(mySaga)
+const unsubscribe = store.subscribe(()=>{
+    console.log(store.getState())
+})
 
 export default store

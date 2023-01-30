@@ -1,5 +1,5 @@
-import {mockedAuthorsList, mockedCoursesList} from "./constants";
-import store from "./store";
+import {mockedAuthorsList, mockedCoursesList} from "../constants";
+import store from "../store";
 
 export const service = {
 
