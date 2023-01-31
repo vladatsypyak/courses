@@ -10,6 +10,9 @@ export default function coursesReducer(state = mockedCoursesList, action) {
         case "FETCH_SUCCEEDED":
             console.log(state, action)
             return [...state, ...action.courses]
+        case "DELETE_SUCCEEDED":
+            console.log(state, action)
+            return state.filter((el)=> el.id !== action.id)
         default:
             return state
     }

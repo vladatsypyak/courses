@@ -24,7 +24,12 @@ return (
                 <p><span className="card_info_title">Duration</span>{props.courseDuration}</p>
                 <p><span className="card_info_title">Created</span>{props.courseCreationDate}</p>
             </div>
-            <Button buttonText={"Show course"}/>
+            <div className={"buttons_wrap"}>
+                <Button buttonText={"Show course"}/>
+                <Button buttonText={"Edit"}/>
+                <Button onClick={()=> props.onDeleteCourseClick(props.id)} buttonText={"Delete"}/>
+
+            </div>
         </div>
     </div>
 </div>)

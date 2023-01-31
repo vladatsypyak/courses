@@ -4,6 +4,7 @@ import coursesReducer from "./courses/reducer";
 import {mockedCoursesList} from "../constants";
 import authorsReducer from "./authors/reducer";
 import mySaga from "../redux/saga/sagas"
+import appReducer from "./appReducer";
 
 
 export const initialState = {
@@ -15,21 +16,23 @@ export const initialState = {
         token: localStorage.getItem("jwt_token")
     },
     courses: mockedCoursesList,
-    authors: [] ,
+    authors: [],
+    firstRender: false
 
 }
 const sagaMiddleware = createSagaMiddleware()
 
 const rootReducer = combineReducers({
     courses: coursesReducer,
-    authors: authorsReducer
+    authors: authorsReducer,
+    app: appReducer
 })
 // This would produce the following state object
 
-const store = createStore(rootReducer,  applyMiddleware(sagaMiddleware))
+const store = createStore(rootReducer, applyMiddleware(sagaMiddleware))
 
 sagaMiddleware.run(mySaga)
-const unsubscribe = store.subscribe(()=>{
+const unsubscribe = store.subscribe(() => {
     console.log(store.getState())
 })
 
