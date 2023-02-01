@@ -1,1 +1,2 @@
-export const LOGIN = "LOGIN"
+export const LOGIN_SUCCESS = "LOGIN_SUCCESS"
+export const USER_LOGIN = "USER_LOGIN"

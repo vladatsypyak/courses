@@ -1,7 +1,8 @@
 import {call, put, takeEvery, takeLatest} from 'redux-saga/effects'
 import axios from "axios";
 import {loginAction} from "../../store/user/actionCreators";
-import {LOGIN} from "../../store/user/actionTypes";
+import { USER_LOGIN} from "../../store/user/actionTypes";
+import store from "../../store";
 
 async function fetchCourses() {
     return axios({
@@ -114,10 +115,9 @@ function* loginSaga(action) {
     try {
 
         const token = yield call(login, action.email, action.password);
-        console.log(token)
         const user = yield call(getUserInfo)
         console.log(user)
-        yield put({type: LOGIN, email: action.email, token: token, name: user.name});
+        yield put(store.dispatch(loginAction(action.email, token, user.name)))
     } catch (e) {
         console.log(e)
     }
@@ -130,5 +130,5 @@ function* loginSaga(action) {
 export default function* mySaga() {
     yield takeEvery("FETCH_COURSES", fetchUser);
     yield takeEvery("DELETE_COURSE", deleteCourse);
-    yield takeEvery("USER_LOGIN", loginSaga);
+    yield takeEvery(USER_LOGIN, loginSaga);
 }

@@ -8,7 +8,7 @@ import {useNavigate} from 'react-router-dom'; // version 5.2.0
 import "./Login.css"
 import axios from "axios";
 import store from "../../store";
-import {loginAction} from "../../store/user/actionCreators";
+import {loginAction, testLog, userLogin} from "../../store/user/actionCreators";
 
 export default function Login() {
 
@@ -28,12 +28,7 @@ export default function Login() {
     }
 
     const onSubmit = (data) => {
-
-        store.dispatch(({
-            type: "USER_LOGIN",
-            email,
-            password
-        }))
+        store.dispatch(userLogin(email, password))
         navigate("/courses")
 
     }

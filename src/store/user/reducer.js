@@ -1,4 +1,4 @@
-import {LOGIN} from "./actionTypes";
+import { LOGIN_SUCCESS} from "./actionTypes";
 
 const initialState = {
     isAuth: false,
@@ -10,9 +10,7 @@ const initialState = {
 
 export default function userReducer(state = initialState, action) {
     switch (action.type) {
-        case LOGIN:
-            console.log(action)
-            console.log(5)
+        case LOGIN_SUCCESS:
             return {
                 isAuth: true,
                 email: action.email,
