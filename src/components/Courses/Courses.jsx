@@ -16,13 +16,11 @@ function Courses() {
 
     useEffect(() => {
         if(store.getState().app.firstRender){
-            console.log(8)
             getCourses()
             store.dispatch(({type: "FIRST_RENDER"}))
         }
     }, [])
 
-    console.log(store.getState())
      function getCourses() {
         return  store.dispatch(({type: "FETCH_COURSES"}))
     }

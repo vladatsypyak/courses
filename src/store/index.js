@@ -5,6 +5,7 @@ import {mockedCoursesList} from "../constants";
 import authorsReducer from "./authors/reducer";
 import mySaga from "../redux/saga/sagas"
 import appReducer from "./appReducer";
+import userReducer from "./user/reducer";
 
 
 export const initialState = {
@@ -25,7 +26,8 @@ const sagaMiddleware = createSagaMiddleware()
 const rootReducer = combineReducers({
     courses: coursesReducer,
     authors: authorsReducer,
-    app: appReducer
+    app: appReducer,
+    user: userReducer
 })
 // This would produce the following state object
 
