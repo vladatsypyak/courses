@@ -10,30 +10,38 @@ import Registration from "./components/Registration/Registration";
 import Login from "./components/Login/Login";
 import CourseInfo from "./components/CourseInfo/CourseInfo";
 import {useEffect} from "react";
+import PrivateRouter from "./components/PrivateRouter/PrivateRouter";
 
 
 function App() {
     const navigate = useNavigate()
-    useEffect(()=>{
-        if(sessionStorage.getItem("jwt_token")){
+    useEffect(() => {
+        if (sessionStorage.getItem("jwt_token")) {
             navigate("/courses")
-        } else{
-
+        } else {
             navigate("/login")
         }
     }, [])
 
     return (<div className={"container"}>
-        <Header/>
-        <Routes>
-            <Route path="/courses" element={<Courses/>}/>
-            <Route path="/courses/createCourse" element={<CreateCourse/>}/>
-            <Route path="/courses/:id" element={<CourseInfo/>}/>
-            <Route path="/registration" element={<Registration/>}/>
-            <Route path="/login" element={<Login/>}/>
+            <Header/>
+            <Routes>
+                <Route path="/courses" element={<Courses/>}/>
+                <Route path={"/courses/createCourse"}
+                       element={
+                           <PrivateRouter>
+                               <CreateCourse/>
+                           </PrivateRouter>
+                       }
+                />
+                {/*<Route path="/courses/createCourse" element={<CreateCourse/>}/>*/}
+                <Route path="/courses/:id" element={<CourseInfo/>}/>
+                <Route path="/registration" element={<Registration/>}/>
+                <Route path="/login" element={<Login/>}/>
+            </Routes>
 
-        </Routes>
-    </div>);
+        </div>
+    );
 }
 
 export default App;

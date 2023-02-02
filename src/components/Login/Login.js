@@ -9,6 +9,7 @@ import "./Login.css"
 import axios from "axios";
 import store from "../../store";
 import {loginAction, testLog, userLogin} from "../../store/user/actionCreators";
+import {loginThunk} from "../../store/user/thunk";
 
 export default function Login() {
 
@@ -28,7 +29,7 @@ export default function Login() {
     }
 
     const onSubmit = (data) => {
-        store.dispatch(userLogin(email, password))
+        store.dispatch(loginThunk(email, password))
         navigate("/courses")
 
     }

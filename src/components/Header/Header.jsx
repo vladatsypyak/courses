@@ -11,22 +11,7 @@ const Header = ()=>{
     const navigate = useNavigate()
     const name = ""
     useEffect(()=>{
-        // axios({
-        //     method: 'get',
-        //     url: 'http://localhost:4000/users/me',
-        //     headers: {'Content-Type': 'application/json'},
-        //     Authorization: 'Bearer ' + sessionStorage.getItem('jwt_token')
-        //
-        // })
-        //     .then((response) => {
-        //         console.log(response)
-        //         return response.data
-        //     })
-        //
-        //
-        //     .catch((error) => {
-        //         console.error('Error:', error);
-        //     });
+
     })
     function onLogoutClick(){
         sessionStorage.removeItem("jwt_token")

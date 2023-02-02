@@ -6,6 +6,7 @@ import authorsReducer from "./authors/reducer";
 import mySaga from "../redux/saga/sagas"
 import appReducer from "./appReducer";
 import userReducer from "./user/reducer";
+import thunk from 'redux-thunk';
 
 
 export const initialState = {
@@ -31,9 +32,9 @@ const rootReducer = combineReducers({
 })
 // This would produce the following state object
 
-const store = createStore(rootReducer, applyMiddleware(sagaMiddleware))
+const store = createStore(rootReducer, applyMiddleware(thunk))
 
-sagaMiddleware.run(mySaga)
+// sagaMiddleware.run(mySaga)
 const unsubscribe = store.subscribe(() => {
     console.log(store.getState())
 })
