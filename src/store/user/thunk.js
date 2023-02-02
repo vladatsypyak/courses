@@ -55,9 +55,9 @@ async function login(email, password) {
 export function loginThunk(email, password) {
     return async (dispatch, getState) => {
         const response = await login(email, password)
-        const userName = await getUserInfo()
-        console.log(response)
-        dispatch(loginAction(email, response,userName.name ))
+        const user = await getUserInfo()
+        console.log(user)
+        dispatch(loginAction(email, response,user.name , user.role))
     }
 }
 

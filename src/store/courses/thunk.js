@@ -10,7 +10,6 @@ async function fetchCourses() {
 
     })
         .then((response) => {
-            console.log(response)
             return response.data.result
         })
         .catch((error) => {
@@ -19,8 +18,6 @@ async function fetchCourses() {
 }
 
 async function deleteCourseApi(id) {
-    console.log(id)
-    console.log(sessionStorage.getItem("jwt_token"))
     const headers = {
         'Authorization': 'Bearer ' + sessionStorage.getItem("jwt_token"),
         'Content-Type': 'application/json'

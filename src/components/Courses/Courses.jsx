@@ -16,32 +16,30 @@ function Courses() {
     const [coursesOnScreen, setCoursesOnScreen] = useState(courses)
 
     useEffect(() => {
-        if(store.getState().app.firstRender){
-            getCourses().then(()=>console.log(store.getState()))
+        if (store.getState().app.firstRender) {
+            getCourses()
+                .then(() => {
+                    setCoursesOnScreen(store.getState().courses)
+                })
             store.dispatch(({type: "FIRST_RENDER"}))
         }
     }, [])
 
-     function getCourses() {
-        return  store.dispatch(fetchCoursesThunk())
+    function getCourses() {
+        return store.dispatch(fetchCoursesThunk())
     }
 
     function onSearchClick(e) {
 
-        console.log(inputValue)
         if (!inputValue) {
-
             setCoursesOnScreen(store.getState().courses)
-
             return
         }
         setCoursesOnScreen(searchByTitleOrId(inputValue))
         console.log(searchByTitleOrId(inputValue))
-
     }
 
     function handleInputChange(e) {
-        console.log(1)
         setInputValue(e.target.value)
     }
 
@@ -58,12 +56,13 @@ function Courses() {
         console.log("delete_btn")
         store.dispatch(deleteCourseThunk(id))
     }
+
     return (
         <div>
             <Searchbar onAddNewCourseClick={onAddNewCourseClick} onSearchClick={onSearchClick}
                        handleInputChange={handleInputChange}/>
             {
-                courses.map((el) => {
+                coursesOnScreen.map((el) => {
                     return <CourseCard
                         onClick={onCardClick}
                         id={el.id}

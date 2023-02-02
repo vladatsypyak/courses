@@ -16,7 +16,8 @@ export default function userReducer(state = initialState, action) {
                 isAuth: true,
                 email: action.email,
                 token: action.token,
-                name: action.name
+                name: action.name,
+                role: action.role
             }
         default:
             return state
