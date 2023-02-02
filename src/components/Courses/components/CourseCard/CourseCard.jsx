@@ -1,11 +1,14 @@
 import "../../../Courses/Courses.css"
 import Button from "../../../../common/Button/Button";
+import {useSelector} from "react-redux";
 function CourseCard(props) {
-
+    const userRole = useSelector(store => store.user.role)
 function onClick(){
     props.onClick(props.id)
+
 }
 return (
+
 <div className={"course_card"}>
     <div className="card_flex_wrap">
         <div className="flex_item card_main">
@@ -26,8 +29,11 @@ return (
             </div>
             <div className={"buttons_wrap"}>
                 <Button  onClick={onClick} buttonText={"Show course"}/>
+                {userRole === "admin" && <>
                 <Button buttonText={"Edit"}/>
                 <Button onClick={()=> props.onDeleteCourseClick(props.id)} buttonText={"Delete"}/>
+                </>}
+
 
             </div>
         </div>

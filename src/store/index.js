@@ -3,7 +3,7 @@ import createSagaMiddleware from 'redux-saga'
 import coursesReducer from "./courses/reducer";
 import {mockedCoursesList} from "../constants";
 import authorsReducer from "./authors/reducer";
-import mySaga from "../redux/saga/sagas"
+
 import appReducer from "./appReducer";
 import userReducer from "./user/reducer";
 import thunk from 'redux-thunk';
