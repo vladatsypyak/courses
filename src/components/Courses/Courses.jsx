@@ -6,6 +6,7 @@ import pipeDate from "../../helpers/pipeDate";
 import {useNavigate} from "react-router-dom";
 import {useSelector} from 'react-redux'
 import store from "../../store";
+import {deleteCourseThunk, fetchCoursesThunk} from "../../store/courses/thunk";
 
 
 function Courses() {
@@ -16,13 +17,13 @@ function Courses() {
 
     useEffect(() => {
         if(store.getState().app.firstRender){
-            getCourses()
+            getCourses().then(()=>console.log(store.getState()))
             store.dispatch(({type: "FIRST_RENDER"}))
         }
     }, [])
 
      function getCourses() {
-        return  store.dispatch(({type: "FETCH_COURSES"}))
+        return  store.dispatch(fetchCoursesThunk())
     }
 
     function onSearchClick(e) {
@@ -55,7 +56,7 @@ function Courses() {
 
     function onDeleteCourseClick(id) {
         console.log("delete_btn")
-        store.dispatch(({type: "DELETE_COURSE", payload: id}))
+        store.dispatch(deleteCourseThunk(id))
     }
     return (
         <div>
