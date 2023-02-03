@@ -1,5 +1,5 @@
 import axios from "axios";
-import {deleteCourseAction, fetchCoursesAction} from "./actionCreators";
+import {createCourse, deleteCourseAction, fetchCoursesAction} from "./actionCreators";
 
 
 async function fetchCourses() {
@@ -11,6 +11,27 @@ async function fetchCourses() {
     })
         .then((response) => {
             return response.data.result
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+}
+
+async function createCourseApi(course) {
+    console.log(course)
+    return axios({
+        method: 'post',
+        url: `http://localhost:4000/courses/add`,
+        headers: {
+            'Authorization': 'Bearer ' + sessionStorage.getItem("jwt_token"),
+            'Content-Type': 'application/json'
+        },
+        data: course
+
+    })
+        .then((response) => {
+            console.log(response)
+            return response
         })
         .catch((error) => {
             console.error('Error:', error);
@@ -50,9 +71,17 @@ export function fetchCoursesThunk() {
         dispatch(fetchCoursesAction(courses))
     }
 }
+
 export function deleteCourseThunk(id) {
     return async (dispatch, getState) => {
         const result = await deleteCourseApi(id)
         dispatch(deleteCourseAction(id))
+    }
+}
+
+export function createCourseThunk(course) {
+    return async (dispatch, getState) =>{
+        const result = await createCourseApi(course)
+        dispatch(createCourse(course))
     }
 }

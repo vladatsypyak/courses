@@ -2,14 +2,14 @@ import {useState} from "react";
 import {service} from "../../redux/service";
 import Input from "../../common/Input/Input";
 import Button from "../../common/Button/Button";
-import "./CreateCourse.css"
+import "./CourseForm.css"
 import pipeDuration from "../../helpers/pipeDuration";
 import {useForm, Controller} from "react-hook-form";
 import store from "../../store";
 import {createAuthor} from "../../store/authors/actionCreators";
 import {createCourse} from "../../store/courses/actionCreators";
 
-function CreateCourse() {
+function CourseForm(props) {
     const [title, setTitle] = useState("")
     const [description, setDescription] = useState("")
     const [authorName, setAuthorName] = useState("")
@@ -53,21 +53,14 @@ function CreateCourse() {
         setCourseAuthors(courseAuthors.filter((el) => el.id !== author.id))
     }
 
-    function onCreateCourseClick() {
-        store.dispatch(createCourse({
-            id: String(Math.random()),
-            title,
-            description,
-            creationDate: String(new Date()),
-            duration,
-            authors: courseAuthors.map(el => el.id)
-        }))
-        console.log(store.getState().courses)
-    }
-
     const onSubmit = (data) => {
-
-        onCreateCourseClick()
+        props.onSubmit({
+                    title,
+                    description,
+                    creationDate: String(new Date()),
+                    duration: Number(duration),
+                    authors: courseAuthors.map(el => String(el.id))
+                })
         console.log(data);
     }
     const {register, control, handleSubmit, watch, formState: {errors}} = useForm();
@@ -138,4 +131,4 @@ function CreateCourse() {
     )
 }
 
-export default CreateCourse
+export default CourseForm

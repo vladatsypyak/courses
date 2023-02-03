@@ -1,2 +1,3 @@
 export const CREATE_AUTHOR = "CREATE_AUTHOR"
 export const SEARCH_COURSES = "SEARCH_COURSES"
+export const GET_ALL_AUTHORS = "GET_ALL_AUTHORS"

@@ -5,12 +5,13 @@ import "./App.css"
 import CourseCard from "./components/Courses/components/CourseCard/CourseCard";
 import Courses from "./components/Courses/Courses";
 import {Route, Routes, useNavigate} from "react-router-dom"
-import CreateCourse from "./components/CreateCourse/CreateCourse";
+
 import Registration from "./components/Registration/Registration";
 import Login from "./components/Login/Login";
 import CourseInfo from "./components/CourseInfo/CourseInfo";
 import {useEffect} from "react";
 import PrivateRouter from "./components/PrivateRouter/PrivateRouter";
+import CreateCourse from "./components/Courses/components/CreateCourse";
 
 
 function App() {

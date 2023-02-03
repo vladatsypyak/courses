@@ -7,6 +7,8 @@ import {useNavigate} from "react-router-dom";
 import {useSelector} from 'react-redux'
 import store from "../../store";
 import {deleteCourseThunk, fetchCoursesThunk} from "../../store/courses/thunk";
+import {getAllAuthors} from "../../store/authors/actionCreators";
+import {fetchAuthorsThunk} from "../../store/authors/thunk";
 
 
 function Courses() {
@@ -21,6 +23,7 @@ function Courses() {
                 .then(() => {
                     setCoursesOnScreen(store.getState().courses)
                 })
+            store.dispatch(fetchAuthorsThunk())
             store.dispatch(({type: "FIRST_RENDER"}))
         }
     }, [])
