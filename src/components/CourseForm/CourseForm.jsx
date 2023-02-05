@@ -1,5 +1,5 @@
 import {useState} from "react";
-import {service} from "../../redux/service";
+import {service} from "../../services/service";
 import Input from "../../common/Input/Input";
 import Button from "../../common/Button/Button";
 import "./CourseForm.css"
@@ -15,7 +15,7 @@ function CourseForm(props) {
     const [authorName, setAuthorName] = useState("")
     const [duration, setDuration] = useState("")
     const [courseAuthors, setCourseAuthors] = useState([])
-    const [authors, setAuthors] = useState(store.getState().authors)
+    const [authors, setAuthors] = useState(props.authors)
 
 
     function onTitleChange(e) {

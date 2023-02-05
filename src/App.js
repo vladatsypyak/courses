@@ -12,6 +12,7 @@ import CourseInfo from "./components/CourseInfo/CourseInfo";
 import {useEffect} from "react";
 import PrivateRouter from "./components/PrivateRouter/PrivateRouter";
 import CreateCourse from "./components/Courses/components/CreateCourse";
+import EditCourse from "./components/Courses/components/EditCourse";
 
 
 function App() {
@@ -32,6 +33,13 @@ function App() {
                        element={
                            <PrivateRouter>
                                <CreateCourse/>
+                           </PrivateRouter>
+                       }
+                />
+                <Route path={"/courses/update/:courseId"}
+                       element={
+                           <PrivateRouter>
+                               <EditCourse/>
                            </PrivateRouter>
                        }
                 />

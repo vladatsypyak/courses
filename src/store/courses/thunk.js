@@ -53,17 +53,6 @@ async function deleteCourseApi(id) {
     ;
 }
 
-// function* deleteCourse(action) {
-//     try {
-//         console.log(action)
-//         const courses = yield call(deleteCourseApi, action.payload);
-//         console.log(courses)
-//         yield put({type: "DELETE_SUCCEEDED", id: action.payload});
-//     } catch (e) {
-//         console.log(e)
-//     }
-// }
-
 
 export function fetchCoursesThunk() {
     return async (dispatch, getState) => {
@@ -85,3 +74,9 @@ export function createCourseThunk(course) {
         dispatch(createCourse(course))
     }
 }
+// export function getCourseByIdThunk(id) {
+//     return async (dispatch, getState) =>{
+//         const result = await getCourseByIdThunk(id)
+//         dispatch(createCourse(course))
+//     }
+// }

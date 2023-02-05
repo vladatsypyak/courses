@@ -1,7 +1,7 @@
 import Searchbar from "./components/SearchBar/SearchBar";
 import CourseCard from "./components/CourseCard/CourseCard";
 import {useEffect, useState} from "react";
-import {searchByTitleOrId} from "../../redux/service";
+import {searchByTitleOrId} from "../../services/service";
 import pipeDate from "../../helpers/pipeDate";
 import {useNavigate} from "react-router-dom";
 import {useSelector} from 'react-redux'
@@ -59,6 +59,9 @@ function Courses() {
         console.log("delete_btn")
         store.dispatch(deleteCourseThunk(id))
     }
+    function onEditCourseClick(id){
+        navigate(`update/${id}`)
+    }
 
     return (
         <div>
@@ -74,6 +77,7 @@ function Courses() {
                         courseDuration={el.duration}
                         courseCreationDate={pipeDate(el.creationDate)}
                         onDeleteCourseClick={onDeleteCourseClick}
+                        onEditCourseClick={onEditCourseClick}
                         courseAuthors={el.authors.map((elAuthor) => {
 
                             return store.getState().authors.filter((author) => author.id === elAuthor)[0]

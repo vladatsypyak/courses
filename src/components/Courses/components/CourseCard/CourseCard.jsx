@@ -30,7 +30,7 @@ return (
             <div className={"buttons_wrap"}>
                 <Button  onClick={onClick} buttonText={"Show course"}/>
                 {userRole === "admin" && <>
-                <Button buttonText={"Edit"}/>
+                <Button onClick={()=>props.onEditCourseClick(props.id)} buttonText={"Edit"}/>
                 <Button onClick={()=> props.onDeleteCourseClick(props.id)} buttonText={"Delete"}/>
                 </>}
 

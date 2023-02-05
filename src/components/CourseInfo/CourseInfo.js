@@ -1,5 +1,5 @@
 import {Link, useParams} from "react-router-dom";
-import {service} from "../../redux/service";
+import {service} from "../../services/service";
 import pipeDuration from "../../helpers/pipeDuration";
 import pipeDate from "../../helpers/pipeDate";
 import "./CourseInfo.css"

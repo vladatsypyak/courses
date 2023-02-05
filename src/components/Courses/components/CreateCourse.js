@@ -9,6 +9,6 @@ const authors = store.getState().authors
         console.log(store.getState().courses)
     }
     return (
-        <CourseForm onSubmit={onCreateCourseClick}/>
+        <CourseForm authors={authors} onSubmit={onCreateCourseClick}/>
     )
 }
