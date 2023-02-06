@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {service} from "../../services/service";
 import Input from "../../common/Input/Input";
 import Button from "../../common/Button/Button";
@@ -9,17 +9,33 @@ import store from "../../store";
 import {createAuthor} from "../../store/authors/actionCreators";
 import {createCourse} from "../../store/courses/actionCreators";
 
-function CourseForm(props) {
-    const [title, setTitle] = useState("")
+function CourseForm({course,authors, onSubmit, courseAuthorsFromApi}) {
+
+    const [title, setTitle] = useState(course?.title)
     const [description, setDescription] = useState("")
     const [authorName, setAuthorName] = useState("")
     const [duration, setDuration] = useState("")
-    const [courseAuthors, setCourseAuthors] = useState([])
-    const [authors, setAuthors] = useState(props.authors)
 
+    const [courseAuthors, setCourseAuthors] = useState([])
+    const [allAuthors, setAllAuthors] = useState(store.getState().authors)
+
+        useEffect(()=>{
+            console.log(course)
+
+            if(course){
+                setTitle(course?.title)
+                setDuration(course?.duration)
+                setDescription(course?.description)
+
+                setAllAuthors(authors)
+                setCourseAuthors(courseAuthorsFromApi)
+            }
+
+
+        }, [course])
 
     function onTitleChange(e) {
-        console.log(e.target.value)
+
         setTitle(e.target.value)
     }
 
@@ -38,46 +54,48 @@ function CourseForm(props) {
 
     function onCreateAuthorClick() {
         store.dispatch(createAuthor(authorName))
-        setAuthors(store.getState().authors)
+        setAllAuthors(store.getState().authors)
         console.log(store.getState().authors)
     }
 
     function onAddAuthor(author) {
         setCourseAuthors([...courseAuthors, author])
-        setAuthors(authors.filter((el) => el.id !== author.id))
+        setAllAuthors(authors.filter((el) => el.id !== author.id))
 
     }
 
     function onAuthorDelete(author) {
-        setAuthors([...authors, author])
+        setAllAuthors([...authors, author])
         setCourseAuthors(courseAuthors.filter((el) => el.id !== author.id))
     }
 
-    const onSubmit = (data) => {
-        props.onSubmit({
-                    title,
-                    description,
-                    creationDate: String(new Date()),
-                    duration: Number(duration),
-                    authors: courseAuthors.map(el => String(el.id))
-                })
+    const onSubmitClick = (data) => {
+        onSubmit({
+            title,
+            description,
+            creationDate: String(new Date()),
+            duration: Number(duration),
+            authors: courseAuthors.map(el => String(el.id))
+        })
         console.log(data);
     }
     const {register, control, handleSubmit, watch, formState: {errors}} = useForm();
 
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className={"create_course_wrap"}>
+        <form onSubmit={handleSubmit(onSubmitClick)} className={"create_course_wrap"}>
 
             <div className="create_course_flex_wrap">
                 <Input placeholderText={"course title"} labelText={"Title"} classname={"create_course_input"}
                        register={register}
-                       onChange={onTitleChange} required/>
+                       onChange={onTitleChange}
+                       value={title}
+                       required/>
                 <button type={"submit"}>Create course</button>
             </div>
             <p className={"create_course_text"}>Description</p>
             <textarea {...register("description", {required: true})} className={"create_course_description"}
-                      onChange={onDescriptionChange}/>
+                      onChange={onDescriptionChange} value={course?.description}/>
             <div className="create_course_authors_section">
                 <div className="create_course_add_author create_course_authors_section_item">
                     <h2 className={"create_course_title"}>Add author</h2>
@@ -91,7 +109,7 @@ function CourseForm(props) {
                 <div className="create_course_authors create_course_authors_section_item">
                     <h2 className={"create_course_title"}>Authors</h2>
                     <div className="create_course_authors_wrap">
-                        {authors.map(el => {
+                        {allAuthors.map(el => {
 
                             return <div className={"authors_item"}>
                                 <p>{el.name}</p>
@@ -107,6 +125,7 @@ function CourseForm(props) {
                     <h2 className={"create_course_title"}>Duration</h2>
                     <Input placeholderText={"duration in minutes"} inputType={"number"} labelText={"Duration"}
                            register={register} required
+                           value={duration}
                            classname={"create_course_section_input"} onChange={onDurationChange}/>
 
                     <p className="create_course_duration_value">

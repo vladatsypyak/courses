@@ -2,7 +2,7 @@ import {mockedCoursesList} from "../../constants";
 import {CREATE_COURSE, DELETE_COURSE_SUCCEED, FETCH_COURSES_SUCCEED} from "./actionTypes";
 
 
-export default function coursesReducer(state = mockedCoursesList, action) {
+export default function coursesReducer(state = [], action) {
     switch (action.type) {
         case CREATE_COURSE:
             console.log(state)

@@ -1,11 +1,12 @@
 import "./Input.css"
 import {useForm} from "react-hook-form";
 
-function Input({onChange, classname, labelText, register, required, placeholderText, inputType}) {
+function Input({value, onChange, classname, labelText, register, required, placeholderText, inputType}) {
 
     if (!inputType) {
         inputType = "text"
     }
+
     return (
         <div className={classname}>
             <p className={"label"}>{labelText}</p>
@@ -15,9 +16,11 @@ function Input({onChange, classname, labelText, register, required, placeholderT
                            type={inputType}
                            {...register(labelText, {required,})}
                            onChange={onChange}
+                           value={"" || value}
+
                     />
                     :
-                    <input onChange={onChange} className={"input"} placeholder={placeholderText} type={inputType}/>
+                    <input  value={"" || value} onChange={onChange} className={"input"} placeholder={placeholderText} type={inputType}/>
 
             }
         </div>

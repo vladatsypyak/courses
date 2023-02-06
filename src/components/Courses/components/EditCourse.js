@@ -8,25 +8,35 @@ import {useEffect, useState} from "react";
 
 export default function EditCourse(props) {
     const [course, setCourse] = useState({})
+    const [courseAuthorsIds, setCourseAuthorsIds] = useState([])
+
     const {courseId} = useParams()
     console.log(courseId)
     useEffect(() => {
             (async () => {
-                const course = await getCourseByIdApi(courseId);
-                console.log(course)
-                setCourse(course)
+                const courseResult = await getCourseByIdApi(courseId);
+                setCourse(courseResult)
+                setCourseAuthorsIds(courseResult.authors)
             })();
     }, [])
+    console.log(course)
+    console.log(courseAuthorsIds)
+    const authors = store.getState().authors.filter(author =>{
+        return courseAuthorsIds.filter(el => el === author.id).length <= 0;
 
-    const authors = store.getState().authors
-
+    })
+    console.log(authors)
+    const courseAuthors = store.getState().authors.filter(author =>{
+        return courseAuthorsIds.filter(el => el === author.id).length > 0})
     function onCreateCourseClick(course) {
         store.dispatch(createCourseThunk(course))
         console.log(store.getState().courses)
     }
 
+    console.log(courseAuthors)
+
     return (
-        <div>hi</div>
-        // <CourseForm authors={authors} onSubmit={onCreateCourseClick}/>
+
+        <CourseForm course={course} courseAuthorsFromApi={courseAuthors} authors={authors} onSubmit={onCreateCourseClick}/>
     )
 }
