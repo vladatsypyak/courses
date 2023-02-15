@@ -9,7 +9,7 @@ import store from "../../store";
 import {createAuthor} from "../../store/authors/actionCreators";
 import {createCourse} from "../../store/courses/actionCreators";
 
-function CourseForm({course,authors, onSubmit, courseAuthorsFromApi}) {
+function CourseForm({submitBtnText, course,authors, onSubmit, courseAuthorsFromApi}) {
 
     const [title, setTitle] = useState(course?.title)
     const [description, setDescription] = useState("")
@@ -76,7 +76,7 @@ function CourseForm({course,authors, onSubmit, courseAuthorsFromApi}) {
             creationDate: String(new Date()),
             duration: Number(duration),
             authors: courseAuthors.map(el => String(el.id))
-        })
+        }, )
         console.log(data);
     }
     const {register, control, handleSubmit, watch, formState: {errors}} = useForm();
@@ -91,7 +91,7 @@ function CourseForm({course,authors, onSubmit, courseAuthorsFromApi}) {
                        onChange={onTitleChange}
                        value={title}
                        required/>
-                <button type={"submit"}>Create course</button>
+                <button type={"submit"}>{submitBtnText} course</button>
             </div>
             <p className={"create_course_text"}>Description</p>
             <textarea {...register("description", {required: true})} className={"create_course_description"}
