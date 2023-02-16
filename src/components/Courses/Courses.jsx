@@ -56,8 +56,10 @@ function Courses() {
     }
 
     function onDeleteCourseClick(id) {
+        console.log(id)
         console.log("delete_btn")
-        store.dispatch(deleteCourseThunk(id))
+        store.dispatch(deleteCourseThunk(id)).then(()=>  setCoursesOnScreen([...store.getState().courses]))
+
     }
     function onEditCourseClick(id){
         navigate(`update/${id}`)

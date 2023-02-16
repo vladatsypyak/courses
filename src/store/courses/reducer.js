@@ -6,6 +6,7 @@ export default function coursesReducer(state = [], action) {
     switch (action.type) {
         case CREATE_COURSE:
             console.log(state)
+            console.log(action)
             return [...state, action.course]
         case FETCH_COURSES_SUCCEED:
             console.log(state, action)

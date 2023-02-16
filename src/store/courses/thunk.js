@@ -92,7 +92,9 @@ export function deleteCourseThunk(id) {
 export function createCourseThunk(course) {
     return async (dispatch, getState) =>{
         const result = await createCourseApi(course)
-        dispatch(createCourse(course))
+        const createdCourse = await result.data.result
+        console.log(createdCourse)
+        dispatch(createCourse(createdCourse))
     }
 }
 export function editCourseThunk(course, id) {
