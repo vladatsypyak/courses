@@ -65,6 +65,7 @@ async function deleteCourseApi(id) {
     };
     axios.delete(`http://localhost:4000/courses/${id}`, {headers})
         .then((response) => {
+            console.log(response)
             return response
         })
         .catch((error) => {

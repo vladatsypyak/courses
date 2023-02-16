@@ -76,7 +76,7 @@ function CourseForm({submitBtnText, course,authors, onSubmit, courseAuthorsFromA
             creationDate: String(new Date()),
             duration: Number(duration),
             authors: courseAuthors.map(el => String(el.id))
-        }, )
+        })
         console.log(data);
     }
     const {register, control, handleSubmit, watch, formState: {errors}} = useForm();
@@ -95,7 +95,7 @@ function CourseForm({submitBtnText, course,authors, onSubmit, courseAuthorsFromA
             </div>
             <p className={"create_course_text"}>Description</p>
             <textarea {...register("description", {required: true})} className={"create_course_description"}
-                      onChange={onDescriptionChange} value={course?.description}/>
+                      onChange={onDescriptionChange} value={description}/>
             <div className="create_course_authors_section">
                 <div className="create_course_add_author create_course_authors_section_item">
                     <h2 className={"create_course_title"}>Add author</h2>
