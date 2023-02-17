@@ -11,7 +11,7 @@ import {createCourse} from "../../store/courses/actionCreators";
 import {createAuthorThunk} from "../../store/authors/thunk";
 import {useNavigate} from "react-router-dom";
 
-function CourseForm({submitBtnText, course,authors, onSubmit, courseAuthorsFromApi}) {
+function CourseForm({submitBtnText, course, authors, onSubmit, courseAuthorsFromApi}) {
 
     const [title, setTitle] = useState(course?.title)
     const [description, setDescription] = useState("")
@@ -20,24 +20,20 @@ function CourseForm({submitBtnText, course,authors, onSubmit, courseAuthorsFromA
 
     const [courseAuthors, setCourseAuthors] = useState([])
     const [allAuthors, setAllAuthors] = useState(store.getState().authors)
-const navigate = useNavigate()
-        useEffect(()=>{
-            console.log(course)
+    const navigate = useNavigate()
+    useEffect(() => {
+        console.log(course)
+        if (course) {
+            setTitle(course?.title)
+            setDuration(course?.duration)
+            setDescription(course?.description)
 
-            if(course){
-                setTitle(course?.title)
-                setDuration(course?.duration)
-                setDescription(course?.description)
-
-                setAllAuthors(authors)
-                setCourseAuthors(courseAuthorsFromApi)
-            }
-
-
-        }, [course])
+            setAllAuthors(authors)
+            setCourseAuthors(courseAuthorsFromApi)
+        }
+    }, [course])
 
     function onTitleChange(e) {
-
         setTitle(e.target.value)
     }
 
@@ -55,8 +51,8 @@ const navigate = useNavigate()
     }
 
     function onCreateAuthorClick() {
-        store.dispatch(createAuthorThunk(authorName))
-        setAllAuthors(store.getState().authors)
+        store.dispatch(createAuthorThunk(authorName)).then(() => setAllAuthors(store.getState().authors))
+
         console.log(store.getState().authors)
     }
 

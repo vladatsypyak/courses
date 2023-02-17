@@ -3,7 +3,7 @@ import Button from "../../../../common/Button/Button";
 import {useSelector} from "react-redux";
 function CourseCard(props) {
     const userRole = useSelector(store => store.user.role)
-    console.log(props.id)
+
 function onClick(){
     props.onClick(props.id)
 

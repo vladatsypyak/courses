@@ -101,7 +101,9 @@ export function createCourseThunk(course) {
 export function editCourseThunk(course, id) {
     return async (dispatch, getState) =>{
         const result = await editCourseApi(course, id)
-        dispatch(editCourse(course, id))
+        const editedCourse = await result.data.result
+        console.log(editedCourse)
+        dispatch(editCourse(editedCourse, id))
     }
 }
 // export function getCourseByIdThunk(id) {
