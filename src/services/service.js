@@ -57,5 +57,13 @@ function searchById(courses, id) {
     )
 }
 export function searchByTitleOrId ( value) {
-        return [...searchByTitle(store.getState().courses, value), ...searchById(store.getState().courses, value)]
+    let result = []
+    let arr = [...searchByTitle(store.getState().courses, value), ...searchById(store.getState().courses, value)]
+    arr.forEach(item => {
+        if(!result.find( (el) => el.id === item.id)){
+            result.push(item)
+        }
+    })
+    console.log(result)
+    return result
 }
