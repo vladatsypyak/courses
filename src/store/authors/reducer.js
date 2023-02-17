@@ -8,10 +8,7 @@ export default function authorsReducer(state = mockedAuthorsList, action) {
         case CREATE_AUTHOR:
             console.log(state)
             return [...state,
-                {
-                    id: String(Math.random() * 10),
-                    name: action.name
-                }]
+                action.author]
         case GET_ALL_AUTHORS:
             console.log(state)
             return action.authors
@@ -21,12 +18,4 @@ export default function authorsReducer(state = mockedAuthorsList, action) {
             return state
     }
 }
-// createAuthor(name) {
-//     this.data = {
-//         ...this.data,
-//         authors: [...this.data.authors, {
-//             id: String(Math.random() * 10),
-//             name: name
-//         }]
-//     }
-// },
+

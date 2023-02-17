@@ -8,6 +8,7 @@ import {useForm, Controller} from "react-hook-form";
 import store from "../../store";
 import {createAuthor} from "../../store/authors/actionCreators";
 import {createCourse} from "../../store/courses/actionCreators";
+import {createAuthorThunk} from "../../store/authors/thunk";
 
 function CourseForm({submitBtnText, course,authors, onSubmit, courseAuthorsFromApi}) {
 
@@ -53,7 +54,7 @@ function CourseForm({submitBtnText, course,authors, onSubmit, courseAuthorsFromA
     }
 
     function onCreateAuthorClick() {
-        store.dispatch(createAuthor(authorName))
+        store.dispatch(createAuthorThunk(authorName))
         setAllAuthors(store.getState().authors)
         console.log(store.getState().authors)
     }
