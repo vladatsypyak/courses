@@ -1,7 +1,7 @@
 import CourseForm from "../../CourseForm/CourseForm";
 import {createCourseThunk, editCourseThunk} from "../../../store/courses/thunk";
 import store from "../../../store";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import {getCourseByIdApi} from "../../../services/apiCalls";
 import axios from "axios";
 import {useEffect, useState} from "react";
@@ -10,6 +10,7 @@ import {editCourse} from "../../../store/courses/actionCreators";
 export default function EditCourse(props) {
     const [course, setCourse] = useState({})
     const [courseAuthorsIds, setCourseAuthorsIds] = useState([])
+    const navigate = useNavigate()
 
     const {courseId} = useParams()
     console.log(courseId)
@@ -30,7 +31,7 @@ export default function EditCourse(props) {
     const courseAuthors = store.getState().authors.filter(author =>{
         return courseAuthorsIds.filter(el => el === author.id).length > 0})
     function onEditCourseClick(course) {
-        store.dispatch(editCourseThunk(course, courseId))
+        store.dispatch(editCourseThunk(course, courseId)).then(()=> navigate("/courses"))
         console.log(store.getState().courses)
     }
 

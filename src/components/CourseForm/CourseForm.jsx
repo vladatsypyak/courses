@@ -9,6 +9,7 @@ import store from "../../store";
 import {createAuthor} from "../../store/authors/actionCreators";
 import {createCourse} from "../../store/courses/actionCreators";
 import {createAuthorThunk} from "../../store/authors/thunk";
+import {useNavigate} from "react-router-dom";
 
 function CourseForm({submitBtnText, course,authors, onSubmit, courseAuthorsFromApi}) {
 
@@ -19,7 +20,7 @@ function CourseForm({submitBtnText, course,authors, onSubmit, courseAuthorsFromA
 
     const [courseAuthors, setCourseAuthors] = useState([])
     const [allAuthors, setAllAuthors] = useState(store.getState().authors)
-
+const navigate = useNavigate()
         useEffect(()=>{
             console.log(course)
 
@@ -79,6 +80,7 @@ function CourseForm({submitBtnText, course,authors, onSubmit, courseAuthorsFromA
             authors: courseAuthors.map(el => String(el.id))
         })
         console.log(data);
+
     }
     const {register, control, handleSubmit, watch, formState: {errors}} = useForm();
 
