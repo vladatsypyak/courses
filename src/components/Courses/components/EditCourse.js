@@ -22,7 +22,6 @@ export default function EditCourse(props) {
             })();
     }, [])
     console.log(course)
-    console.log(courseAuthorsIds)
     const authors = store.getState().authors.filter(author =>{
         return courseAuthorsIds.filter(el => el === author.id).length <= 0;
 

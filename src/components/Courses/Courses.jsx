@@ -57,7 +57,6 @@ function Courses() {
 
     function onDeleteCourseClick(id) {
         console.log(id)
-        console.log("delete_btn")
         store.dispatch(deleteCourseThunk(id)).then(()=>  setCoursesOnScreen([...store.getState().courses]))
 
     }
@@ -77,11 +76,10 @@ function Courses() {
                         courseTitle={el.title}
                         courseDescription={el.description}
                         courseDuration={el.duration}
-                        courseCreationDate={pipeDate(el.creationDate)}
+                        courseCreationDate={el.creationDate}
                         onDeleteCourseClick={onDeleteCourseClick}
                         onEditCourseClick={onEditCourseClick}
                         courseAuthors={el.authors.map((elAuthor) => {
-
                             return store.getState().authors.filter((author) => author.id === elAuthor)[0]
                         })}
                     />
